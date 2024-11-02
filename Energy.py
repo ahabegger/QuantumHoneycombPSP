@@ -103,7 +103,7 @@ def get_energy_hp_table():
     dict
         Energy table for the HP model.
     """
-    return {'HH': 1, 'HP': 0, 'PH': 0, 'PP': 0}
+    return {'HH': -1, 'HP': 0, 'PH': 0, 'PP': 0}
 
 def get_energy_hpab_table():
     """

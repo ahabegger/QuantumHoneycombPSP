@@ -9,6 +9,7 @@ import math
 from BitOps import (sum_half_adder, carry_half_adder, xnor,
                     half_adder_array, sum_of_directions_helper, sum_of_directions_plus_one_helper)
 from Energy import get_energy_matrix
+from sympy import *
 
 
 def create_energy_function(sequence, energy_model):
