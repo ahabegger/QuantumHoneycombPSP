@@ -1,9 +1,5 @@
-import HCOMB12
-import HCOMB6
-import HCOMB8
 from Energy import encode_hp, encode_hpab, get_energy_matrix
-import HCOMB4
-
+from Binary import HCOMB4, HCOMB6, HCOMB8, HCOMB12
 
 sequence = 'GAGA'
 energy_model = 'HP'
