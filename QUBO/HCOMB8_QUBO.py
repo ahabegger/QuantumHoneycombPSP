@@ -15,7 +15,7 @@ Presets : 00x S or U
 import math
 from Energy import get_energy_matrix
 from pyqubo import *
-from BitOps_QUBO import (sum_of_directions, sum_of_directions_plus_one,
+from QUBO.BitOps_QUBO import (sum_of_directions, sum_of_directions_plus_one,
                          initialize_q_vars, sum_of_y, sum_of_y_plus_one, sum_of_y_plus_two)
 from pprint import pprint
 from QUBO.BitOps_QUBO import Xnor
@@ -25,7 +25,6 @@ def create_energy_function(sequence, energy_model):
     global q_vars
     q_vars = initialize_q_vars(num_amino, 3)
     q_vars = set_default(q_vars)
-    print(q_vars)
 
     energy_matrix = get_energy_matrix(sequence, energy_model)
     interactions, energy_values = create_interactions(sequence, energy_matrix)
@@ -49,7 +48,7 @@ def create_energy_function(sequence, energy_model):
     qubo = model.to_qubo()
     ising = model.to_ising()
 
-    return bqm, qubo, ising
+    return model, bqm, qubo, ising
 
 def set_default(vars):
     vars[(0, 0)] = Num(0)

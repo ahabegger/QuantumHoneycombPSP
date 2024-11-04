@@ -19,7 +19,7 @@ Presets : 1011 NE , 1xx1 NE or NW or UE or UW
 import math
 from Energy import get_energy_matrix
 from sympy import *
-from BitOps import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
+from Binary.BitOps import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
 from sympy.logic.boolalg import Or, And, Not, true, false, Xnor
 
 

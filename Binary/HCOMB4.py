@@ -11,7 +11,7 @@ Presets : 01 E , x1 E or N
 import math
 from Energy import get_energy_matrix
 from sympy import *
-from BitOps import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
+from Binary.BitOps import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
 from sympy.logic.boolalg import Or, And, Not, true, false, Xnor
 
 

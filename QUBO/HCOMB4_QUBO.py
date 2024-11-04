@@ -11,7 +11,7 @@ Presets : 01 E , x1 E or N
 import math
 from Energy import get_energy_matrix
 from pyqubo import *
-from BitOps_QUBO import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
+from QUBO.BitOps_QUBO import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
 from pprint import pprint
 from QUBO.BitOps_QUBO import Xnor
 
@@ -21,14 +21,13 @@ def create_energy_function(sequence, energy_model):
     global q_vars
     q_vars = initialize_q_vars(num_amino, 2)
     q_vars = set_default(q_vars)
-    print(q_vars)
 
     energy_matrix = get_energy_matrix(sequence, energy_model)
     interactions, energy_values = create_interactions(sequence, energy_matrix)
     total_interaction_energy = Num(0)
     for i in range(len(interactions)):
         interaction_value = interactions[i] * energy_values[i]
-        total_interaction_energy = total_interaction_energy + interaction_value\
+        total_interaction_energy = total_interaction_energy + interaction_value
 
     penalty = (sum(energy_values) * -1) + 1
 
@@ -39,13 +38,13 @@ def create_energy_function(sequence, energy_model):
     backup = Num(penalty) * backup
 
     model = total_interaction_energy + overlap + backup
-    model = model.compile(10)
+    model = model.compile(5)
 
     bqm = model.to_bqm()
     qubo = model.to_qubo()
     ising = model.to_ising()
 
-    return bqm, qubo, ising
+    return model, bqm, qubo, ising
 
 
 def set_default(vars):
