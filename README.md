@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-### CLI
+### QUBO CLI
 
 The main.py script can be used as a command-line interface (CLI) to specify the sequence, energy model, lattice type, and whether to use the binary model.
 Command-Line Arguments
@@ -31,13 +31,7 @@ Command-Line Arguments
 - lattice_type: Lattice type (choices: 4, 6, 8, 12)
 - --binary: Use the binary model (optional flag)
 
-### Example Command
-
-```bash
-python main.py GAAGA HP 4 --binary
-```
-
-## Output
+### Output
 
 The script will output the following information:
 
@@ -46,6 +40,35 @@ The script will output the following information:
 - QUBO, BQM, and Ising models (if --binary is not used)
 - Mapped QUBO variables
 - Final QUBO equation
+
+### Example Command
+
+```bash
+python main.py GAAGA HP 4 --binary
+```
+
+### Visualization CLI
+
+The Visualize.py script can be used to visualize the protein sequence on a lattice.
+Command-Line Arguments
+
+sequence: Protein sequence (e.g., 'GAAGA')
+energy_model: Energy model (choices: 'HP', 'HPAB', 'WHPAB', 'MJ')
+lattice_type: Lattice type (choices: 4, 6, 8, 12)
+binary_output: Binary move output from QUBO
+
+Example Command
+
+```bash
+python Visualize.py GAAGA HP 4 101110
+```
+
+### Output
+
+The script will output the following information:
+
+- A Matplotlib image of the protein sequence on the lattice
+- The energy value of the protein sequence
 
 ## License
 
