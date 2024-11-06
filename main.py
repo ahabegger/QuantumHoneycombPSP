@@ -5,7 +5,7 @@ from Binary import HCOMB4, HCOMB6, HCOMB8, HCOMB12
 from QUBO import HCOMB4_QUBO, HCOMB6_QUBO, HCOMB8_QUBO, HCOMB12_QUBO
 
 
-def main(sequence, energy_model, lattice_type, qubo):
+def main(sequence, energy_model, lattice_type, binary):
     if energy_model == 'HP':
         encoded_sequence = encode_hp(sequence)
     elif energy_model == 'HPAB':
@@ -27,7 +27,7 @@ def main(sequence, energy_model, lattice_type, qubo):
 
     print(f'INTERACTION_MATRIX:\n{interaction_matrix}')
 
-    if not qubo:
+    if binary:
         if lattice_type == 4:
             energy_function = HCOMB4.create_energy_function(sequence, energy_model)
         elif lattice_type == 6:
@@ -124,7 +124,7 @@ if __name__ == '__main__':
     parser.add_argument('sequence', type=str, help='Protein sequence')
     parser.add_argument('energy_model', type=str, choices=['HP', 'HPAB', 'WHPAB', 'MJ'], help='Energy model')
     parser.add_argument('lattice_type', type=int, choices=[4, 6, 8, 12], help='Lattice type')
-    parser.add_argument('--qubo', action='store_true', help='Use QUBO model')
+    parser.add_argument('--binary', action='store_true', help='Use Binary model')
 
     args = parser.parse_args()
     main(args.sequence, args.energy_model, args.lattice_type, args.qubo)
