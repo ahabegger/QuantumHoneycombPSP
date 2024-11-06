@@ -21,39 +21,22 @@ def get_interaction_coords(coordinates):
     # cycle through the coordinates and return pairs of coordinates that are 1 unit apart
     interaction_coords = []
     connection_coords = []
-    dimensions_per_move = len(coordinates[0])
 
     for i in range(len(coordinates)):
         for j in range(i+2, len(coordinates)):
-            x = abs(coordinates[i][0] - coordinates[j][0])
-            y = abs(coordinates[i][1] - coordinates[j][1])
-
-            if dimensions_per_move == 2:
-                if close_to_one(x + y):
-                    interaction_coords.append((coordinates[i], coordinates[j]))
-            elif dimensions_per_move == 3:
-                z = abs(coordinates[i][2] - coordinates[j][2])
-                if close_to_one(x + y + z):
-                    interaction_coords.append((coordinates[i], coordinates[j]))
+            if close_to_one(math.dist(coordinates[i], coordinates[j])):
+                interaction_coords.append((coordinates[i], coordinates[j]))
 
     for i in range(len(coordinates) - 1):
         j = i + 1
-        x = abs(coordinates[i][0] - coordinates[j][0])
-        y = abs(coordinates[i][1] - coordinates[j][1])
-
-        if dimensions_per_move == 2:
-            if close_to_one(x + y):
-                connection_coords.append((coordinates[i], coordinates[j]))
-        elif dimensions_per_move == 3:
-            z = abs(coordinates[i][2] - coordinates[j][2])
-            if close_to_one(x + y + z):
-                connection_coords.append((coordinates[i], coordinates[j]))
+        if close_to_one(math.dist(coordinates[i], coordinates[j])):
+            connection_coords.append((coordinates[i], coordinates[j]))
 
     return (interaction_coords, connection_coords)
 
 
 def close_to_one(num):
-    if 0.9 < num < 1.1:
+    if 0.99 < num < 1.01:
         return True
     return False
 
