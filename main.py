@@ -127,4 +127,4 @@ if __name__ == '__main__':
     parser.add_argument('--binary', action='store_true', help='Use Binary model')
 
     args = parser.parse_args()
-    main(args.sequence, args.energy_model, args.lattice_type, args.qubo)
+    main(args.sequence, args.energy_model, args.lattice_type, args.binary)
