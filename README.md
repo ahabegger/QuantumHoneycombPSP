@@ -77,15 +77,22 @@ The script will output the following information:
 
 We consider the pentapeptide YGGFM, which is Met-enkephalin Tyr-Gly-Gly-Phe-Met an endogenous opioid peptide involved in regulating nociception (pain sensation) in the body. We use ten binary turn qubits to represent the folding directions and 68 ancillary qubits to reduce higher-order terms in the QUBO formulation. We used MJ energy model on a HCOMB12 Lattice.
 
+```bash
+python main.py YGGFM MJ 12
+```
+
 ![img.png](Results/Images/img.png)
 
 ![HCOMB_12_samples (2).png](Results/Images/HCOMB_12_samples%20%282%29.png)
 
-Then the visulaization of the top two most occuring proteins bitstrings were visulaized to produce the following images.
+Then, the top two most occurring proteins, bitstrings, were visualized to produce the following images.
+
+```bash
+python Visualize.py YGGFM MJ 12 1101001010
+python Visualize.py YGGFM MJ 12 1101011010
+```
 
 ![YGGFM_HCOMB12 (1).png](Results/Images/YGGFM_HCOMB12%20%281%29.png)
-
-
 
 
 ## License
