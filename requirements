@@ -1,0 +1,5 @@
+matplotlib==3.9.2
+numpy==2.1.3
+sympy==1.13.3
+pyqubo2==1.4.0
+dimod==0.12.18

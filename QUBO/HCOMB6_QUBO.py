@@ -12,8 +12,6 @@ Presets : 000 E , x00 E or U
 
 import math
 
-from cryptography.hazmat.backends.openssl import backend
-
 from Energy import get_energy_matrix
 from pyqubo import *
 from QUBO.BitOps_QUBO import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
