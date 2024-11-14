@@ -1,6 +1,9 @@
+![purple_protein.png](Results%2FImages%2Fpurple_protein.png)
+
 # QuantumHoneycombPSP
 
 QuantumHoneycombPSP is a Python-based project designed to model protein structure prediction (PSP) using quantum computing techniques. The project includes various modules to encode sequences, generate energy matrices, and create energy functions for different lattice types. It also supports the conversion of these energy functions into Quadratic Unconstrained Binary Optimization (QUBO) and Ising models. Then runs the QUBO model on D-Wave's quantum annealer to predict the protein structure.
+
 ## Features
 
 - **Sequence Encoding**: Encode protein sequences using different models such as HP, HPAB, and WHPAB.
