@@ -34,10 +34,10 @@ def create_energy_function(sequence, energy_model):
     overlap = create_overlap_constraint(num_amino)
     overlap = Num(penalty) * overlap
 
-    backup = create_back_constraint(num_amino)
-    backup = Num(penalty) * backup
+    back = create_back_constraint(num_amino)
+    back = Num(penalty) * back
 
-    model = total_interaction_energy + overlap + backup
+    model = total_interaction_energy + overlap + back
     model = model.compile(5)
 
     bqm = model.to_bqm()
@@ -108,7 +108,6 @@ def create_back_constraint(num_amino):
         back = Or(back, And(dy_plus(t), dy_minus(t + 1)))
         back = Or(back, And(dy_minus(t), dy_plus(t + 1)))
     return back
-
 
 def adjacency_indicator(amino1, amino2):
     dx_plus_sum = sum_of_directions(dx_plus, amino1, amino2)

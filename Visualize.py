@@ -1,7 +1,8 @@
 import argparse
 import math
-import matplotlib.pyplot as plt
 from Energy import encode_hp, encode_hpab
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 
 def visualize(sequence, energy_model, lattice_type, binary_output):
@@ -36,7 +37,7 @@ def get_interaction_coords(coordinates):
 
 
 def close_to_one(num):
-    if 0.99 < num < 1.01:
+    if 0.98 < num < 1.02:
         return True
     return False
 
@@ -159,8 +160,6 @@ def encoded_sequence(energy_model, sequence):
 
     return encode_sequence
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches  # For custom legend handles
 
 def plot_lattice(coordinates, color_sequences, interaction_coords, connection_coords):
     num_of_dimensions = len(coordinates[0])

@@ -11,6 +11,9 @@ Presets : 000 E , x00 E or U
 """
 
 import math
+
+from cryptography.hazmat.backends.openssl import backend
+
 from Energy import get_energy_matrix
 from pyqubo import *
 from QUBO.BitOps_QUBO import sum_of_directions, sum_of_directions_plus_one, initialize_q_vars
@@ -28,7 +31,7 @@ def create_energy_function(sequence, energy_model):
     total_interaction_energy = Num(0)
     for i in range(len(interactions)):
         interaction_value = interactions[i] * energy_values[i]
-        total_interaction_energy = total_interaction_energy + interaction_value\
+        total_interaction_energy = total_interaction_energy + interaction_value
 
     penalty = (sum(energy_values) * -1) + 1
 
@@ -38,11 +41,11 @@ def create_energy_function(sequence, energy_model):
     overlap = create_overlap_constraint(num_amino)
     overlap = Num(penalty) * overlap
 
-    backup = create_back_constraint(num_amino)
-    backup = Num(penalty) * backup
+    back = create_back_constraint(num_amino)
+    back = Num(penalty) * back
 
-    model = total_interaction_energy + overlap + backup + redundancy
-    model = model.compile(10)
+    model = total_interaction_energy + overlap + redundancy + back
+    model = model.compile(5)
 
     bqm = model.to_bqm()
     qubo = model.to_qubo()
@@ -105,6 +108,17 @@ def create_redundancy_constraint(num_amino):
 
     return redundancy
 
+def create_back_constraint(num_amino):
+    # Initialize back constraint as False
+    back = Num(0)
+    for t in range(num_amino - 2):
+        back = Or(back, And(dx_plus(t), dx_minus(t + 1)))
+        back = Or(back, And(dx_minus(t), dx_plus(t + 1)))
+        back = Or(back, And(dy_plus(t), dy_minus(t + 1)))
+        back = Or(back, And(dy_minus(t), dy_plus(t + 1)))
+        back = Or(back, And(dz_plus(t), dz_minus(t + 1)))
+        back = Or(back, And(dz_minus(t), dz_plus(t + 1)))
+    return back
 
 def create_overlap_constraint(num_amino):
     # Initialize overlap constraint as False
@@ -129,19 +143,6 @@ def create_overlap_constraint(num_amino):
             overlap = Or(overlap, amino_overlap)
 
     return overlap
-
-
-def create_back_constraint(num_amino):
-    # Initialize back constraint as False
-    back = Num(0)
-    for t in range(num_amino - 2):
-        back = Or(back, And(dx_plus(t), dx_minus(t + 1)))
-        back = Or(back, And(dx_minus(t), dx_plus(t + 1)))
-        back = Or(back, And(dy_plus(t), dy_minus(t + 1)))
-        back = Or(back, And(dy_minus(t), dy_plus(t + 1)))
-        back = Or(back, And(dz_plus(t), dz_minus(t + 1)))
-        back = Or(back, And(dz_minus(t), dz_plus(t + 1)))
-    return back
 
 
 def adjacency_indicator(amino1, amino2):

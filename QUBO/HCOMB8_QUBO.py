@@ -31,18 +31,18 @@ def create_energy_function(sequence, energy_model):
     total_interaction_energy = Num(0)
     for i in range(len(interactions)):
         interaction_value = interactions[i] * energy_values[i]
-        total_interaction_energy = total_interaction_energy + interaction_value\
+        total_interaction_energy = total_interaction_energy + interaction_value
 
-    penalty = (sum(energy_values) * -1) + 1
+    penalty = 40
+
+    back = create_back_constraint(num_amino)
+    back = Num(penalty) * back
 
     overlap = create_overlap_constraint(num_amino)
     overlap = Num(penalty) * overlap
 
-    backup = create_back_constraint(num_amino)
-    backup = Num(penalty) * backup
-
-    model = total_interaction_energy + overlap + backup
-    model = model.compile(10)
+    model = total_interaction_energy + overlap + back
+    model = model.compile(1)
 
     bqm = model.to_bqm()
     qubo = model.to_qubo()
@@ -104,6 +104,7 @@ def dz_minus(t):
     q_tb = q_vars[(t, 1)]
     q_tc = q_vars[(t, 2)]
     return And(q_ta, And(q_tb, Not(q_tc)))
+
 
 def create_back_constraint(num_amino):
     # Initialize back constraint as False
