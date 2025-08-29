@@ -15,6 +15,12 @@ QuantumHoneycombPSP is a Python-based project designed to model protein structur
 - **Getting Sample Dates**: Get sample data from D-Wave's quantum annealer to predict the protein structure.
 - **Structure Imager**: Generate images of protein structures based on the encoded sequences.
 
+## Related Works
+
+- [Quantum Computing in Protein Folding: Integrating Lattice Models and Energy Functions](http://rave.ohiolink.edu/etdc/view?acc_num=miami1732108553863368) is a Master's Thesis. Here is the abstract: Protein folding is an NP-Hard problem in computational biology due to the three-dimensional nature of proteins and the vast conformational space. Quantum computing shows promise in addressing this challenge by using unique quantum algorithms to explore protein folding landscapes more efficiently. Key contributions of this thesis include: the Relative Normalized Movement Score, a novel metric for evaluating protein structure fidelity in a distance-independent manner, novel energy models, such as the Hydrophobic-Polar-Acidic-Basic (HPAB) model, and the development and application of CA-2-HCOMB, a Protein Chain Lattice Fitting (PCLF) program, which simplifies protein structures by fitting alpha-carbon traces into discrete lattice models to reduce computational complexity while maintaining structural fidelity. Building upon previous research, we formulated a novel energy encoding for both the Triangular Prismatic Honeycomb (HCOMB-8) lattice model and the Tetrahedral-Octahedral Honeycomb (HCOMB-12) lattice model, also known as the face-centered cubic (FCC) lattice. These lattice models enable more precise protein structure modeling and can be reduced to a Quadratic Unconstrained Binary Optimization (QUBO) problem. To demonstrate the proof of concept, we folded a small peptide sequence using the HCOMB-8 and HCOMB-12 models with the LeapHybrid Algorithm on D-Wave's quantum computer.
+
+- [CA-2-HCOMB](https://github.com/ahabegger/CA-2-HCOMB) is a GitHub Repository. CA-2-HCOMB is a Python tool for simplifying single-chain protein structures from PDB files into manageable models like various honeycombs, retaining essential information for in-depth computations. It's efficient for large datasets and machine learning, and user-friendly for research and education.
+
 ## Installation
 
 To install the required dependencies, run:
